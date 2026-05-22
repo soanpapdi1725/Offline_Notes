@@ -39,7 +39,7 @@ const TabLayout = () => {
           position: "absolute",
           overflow: "hidden",
           marginHorizontal: 20,
-          marginBottom: insets.bottom,
+          marginBottom: insets.bottom + 10,
           borderWidth: 1,
           height: 65,
         },

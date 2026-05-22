@@ -57,18 +57,20 @@ const Create = () => {
         }}
       >
         {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
-          <View className="flex-col mt-4">
+          <View className="flex-col mt-4 flex-1">
             <TextInput
-              className="text-4xl h-20 text-[#292929] font-header font-bold"
+              className="text-4xl h-20 text-[#121212] font-header font-bold"
               placeholder="Note Title"
+              placeholderTextColor="#A09CAB"
               onChangeText={handleChange("title")}
               value={values.title}
             />
 
             <View className="h-[45%] border-[1px] border-[#c5c5c5] rounded-lg">
               <TextInput
-                className="text-xl text-[#333131] font-body"
+                className="text-xl text-[#282829] font-body"
                 placeholder="Note"
+                placeholderTextColor="#A09CAB"
                 onChangeText={handleChange("description")}
                 value={values.description}
                 multiline

@@ -1,6 +1,5 @@
 import Entypo from "@expo/vector-icons/Entypo";
 import Feather from "@expo/vector-icons/Feather";
-import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
@@ -33,7 +32,9 @@ const TaskInDetail = () => {
   const { notes } = useSelector((state) => state.savedNotes);
   const note = notes.find((task) => task.id.toString() === taskId);
 
-  const [finishDate, setFinishDate] = useState(new Date(note?.dueDate || Date.now()));
+  const [finishDate, setFinishDate] = useState(
+    new Date(note?.dueDate || Date.now()),
+  );
   const categories = CategoryTags;
   const [tag, setTag] = useState(note?.category || "None");
   const [editable, SetEditable] = useState(false);
@@ -55,7 +56,9 @@ const TaskInDetail = () => {
 
   const handleOnCompleteTask = () => {
     const updateTasks = notes.map((singleTask) =>
-      singleTask.id === id ? { ...singleTask, completed: !completed } : singleTask,
+      singleTask.id === id
+        ? { ...singleTask, completed: !completed }
+        : singleTask,
     );
     dispatch(setNotes(updateTasks));
   };
@@ -82,7 +85,7 @@ const TaskInDetail = () => {
             className="h-10 w-10 bg-orange-200 justify-center items-center rounded-full"
             onPress={() => {
               handleOnDelete(notes, taskId);
-              router.pop();
+              router.back();
             }}
           >
             <MaterialCommunityIcons name="delete" size={30} color="red" />
@@ -115,18 +118,20 @@ const TaskInDetail = () => {
             }}
           >
             {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
-              <View className="flex-col mt-4">
+              <View className="flex-col mt-4 flex-1">
                 <TextInput
-                  className="text-4xl font-header font-bold"
+                  className="text-4xl text-[#000000] font-header font-bold"
                   placeholder="Note Title"
                   onChangeText={handleChange("title")}
                   value={values.title}
+                  placeholderTextColor={"#A09CAB"}
                 />
 
                 <View className="h-[45%] border-[1px] border-[#c5c5c5] rounded-lg">
                   <TextInput
                     className="text-xl font-body"
                     placeholder="Note"
+                    placeholderTextColor="#A09CAB"
                     onChangeText={handleChange("description")}
                     value={values.description}
                     multiline
@@ -174,9 +179,9 @@ const TaskInDetail = () => {
                     <Text className="font-bold font-header ">
                       {finishDate.toLocaleDateString(undefined, {
                         weekday: "short",
-                        year:"numeric",
-                        month:"short",
-                        day:"numeric"
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
                       })}
                     </Text>
                     <TouchableOpacity
@@ -243,7 +248,9 @@ const TaskInDetail = () => {
                 ) : (
                   <Ionicons name="timer-outline" size={24} color="orange" />
                 )}
-                <Text className="font-bold">{completed ? "Completed" : "In Progress"}</Text>
+                <Text className="font-bold">
+                  {completed ? "Completed" : "In Progress"}
+                </Text>
               </View>
             </View>
             <Text className="text-4xl my-4 mb-4 font-header font-bold">
