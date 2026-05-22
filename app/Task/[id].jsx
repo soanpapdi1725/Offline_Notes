@@ -66,7 +66,11 @@ const TaskInDetail = () => {
     <FrameForScreens>
       {/* Back button edit button and delete button - back will be left side and other two will be on right side */}
       <View className="flex-row justify-between my-3">
-        <TouchableOpacity onPress={() => router.back()}>
+        <TouchableOpacity
+          onPress={() => {
+            editable ? SetEditable(false) : router.back();
+          }}
+        >
           <Feather name="arrow-left" size={30} color="black" />
         </TouchableOpacity>
         <View className="flex-row items-center justify-center w-20 gap-3">
@@ -75,7 +79,7 @@ const TaskInDetail = () => {
             className="h-10 w-10 bg-orange-100 justify-center items-center rounded-full"
           >
             {editable || mode === "editable" ? (
-              <Entypo name="circle-with-cross" size={24} color="red" />
+              <Entypo name="cross" size={24} color="red" />
             ) : (
               <MaterialIcons name="create" size={30} color="green" />
             )}
