@@ -53,7 +53,7 @@ const Create = () => {
           values.description = "";
           values.title = "";
           setTag("None");
-          router.navigate("/(Tabs)/notes");
+          router.navigate("/notes");
         }}
       >
         {({ handleChange, handleBlur, handleSubmit, values, errors }) => (

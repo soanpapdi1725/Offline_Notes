@@ -33,16 +33,21 @@ const TaskInDetail = () => {
   const { notes } = useSelector((state) => state.savedNotes);
   const note = notes.find((task) => task.id.toString() === taskId);
 
+  const [finishDate, setFinishDate] = useState(new Date(note?.dueDate || Date.now()));
+  const categories = CategoryTags;
+  const [tag, setTag] = useState(note?.category || "None");
+  const [editable, SetEditable] = useState(false);
+  const [showDatePicker, setShowDatePicker] = useState(false);
+
+  if (!note) {
+    return null;
+  }
+
   const { id, title, description, completed, category, dueDate, createdAt } =
     note;
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const [finishDate, setFinishDate] = useState(new Date(dueDate));
-  const categories = CategoryTags;
-  const [tag, setTag] = useState(category);
-  const [editable, SetEditable] = useState(false);
-  const [showDatePicker, setShowDatePicker] = useState(false);
   const handleOnDelete = (notes, id) => {
     const newNotes = notes.filter((task) => task.id.toString() !== id);
     dispatch(setNotes(newNotes));
@@ -106,7 +111,7 @@ const TaskInDetail = () => {
                 singleTask.id === id ? newTask : singleTask,
               );
               dispatch(setNotes(updatedNotes));
-              router.navigate("/(Tabs)/notes");
+              router.navigate("/notes");
             }}
           >
             {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
