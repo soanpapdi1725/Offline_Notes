@@ -5,6 +5,13 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
+    "updates": {
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/d78e829b-d361-47c8-b3c4-1fe4bb70dfb8"
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
     "scheme": "offlinenotes",
     "userInterfaceStyle": "automatic",
     "ios": {

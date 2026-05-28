@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 const FrameForScreens = ({ children }) => {
   const insets = useSafeAreaInsets();
   return (
-    <View className="flex-1 mx-3" style={{ paddingTop: insets.top }}>
+    <View className="flex-1 mx-3" style={{ paddingTop: insets.top}}>
       {children}
     </View>
   );

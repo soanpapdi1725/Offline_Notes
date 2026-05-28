@@ -232,15 +232,15 @@ const TaskInDetail = () => {
             )}
           </Formik>
         ) : (
-          <View className="">
-            <View className="flex-row justify-between">
+          <>
+            <View className="flex-row justify-between rounded-b-lg ">
               <View
                 style={{
                   backgroundColor: categories.find(
                     (tag) => tag.name === category,
                   )?.activeColor,
                 }}
-                className="h-6 w-16 items-center rounded-lg  justify-center border-black-[1px]"
+                className="h-6 max-w-max px-2 items-center rounded-lg  justify-center border-black-[1px]"
               >
                 <Text className="text-sm font-header text-center text-white font-bold">
                   {category}
@@ -257,57 +257,63 @@ const TaskInDetail = () => {
                 </Text>
               </View>
             </View>
-            <Text className="text-4xl my-4 mb-4 font-header font-bold">
-              {title}
-            </Text>
-            <Text className="text-xl my-10 font-body">{description}</Text>
-
-            <View className="flex-row items-center gap-x-4 ">
-              <View>
-                <Feather name="calendar" size={24} color="black" />
-              </View>
-
-              <View className="">
-                <Text className="font-header text-sm">COMPLETE BEFORE</Text>
-                <Text>
-                  {" "}
-                  {new Date(dueDate).toLocaleDateString(undefined, {
-                    weekday: "short",
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })}
-                </Text>
-              </View>
-            </View>
-            <View className="flex-row gap-4 h-15 items-center my-10">
-              <AntDesign name="clock-circle" size={24} color="black" />
-              <View>
-                <Text className="font-header text-sm">CREATED AT</Text>
-                <Text>
-                  {new Date(createdAt).toLocaleString(undefined, {
-                    dateStyle: "medium",
-                    timeStyle: "short",
-                  })}
-                </Text>
-              </View>
-            </View>
-            <TouchableOpacity
-              onPress={() => {
-                handleOnCompleteTask();
-              }}
-              className={`${completed ? "bg-[#848484]" : "bg-[#6A3EA1]"} flex-row py-4 justify-center rounded-lg gap-2`}
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{ paddingBottom: "20%" }}
             >
-              <Feather
-                name={completed ? "rotate-ccw" : "check-circle"}
-                size={24}
-                color="white"
-              />
-              <Text className="text-xl font-header font-bold text-white">
-                {completed ? "Mark as Incomplete" : "Mark as Complete"}
+              <View className="flex-row justify-between"></View>
+              <Text className="text-4xl my-4 mb-4 font-header font-bold">
+                {title}
               </Text>
-            </TouchableOpacity>
-          </View>
+              <Text className="text-xl  py-8 font-body">{description}</Text>
+
+              <View className="flex-row items-center gap-x-4 ">
+                <View>
+                  <Feather name="calendar" size={24} color="black" />
+                </View>
+
+                <View className="">
+                  <Text className="font-header text-sm">COMPLETE BEFORE</Text>
+                  <Text>
+                    {" "}
+                    {new Date(dueDate).toLocaleDateString(undefined, {
+                      weekday: "short",
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </Text>
+                </View>
+              </View>
+              <View className="flex-row gap-4 h-15 items-center my-10">
+                <AntDesign name="clock-circle" size={24} color="black" />
+                <View>
+                  <Text className="font-header text-sm">CREATED AT</Text>
+                  <Text>
+                    {new Date(createdAt).toLocaleString(undefined, {
+                      dateStyle: "medium",
+                      timeStyle: "short",
+                    })}
+                  </Text>
+                </View>
+              </View>
+              <TouchableOpacity
+                onPress={() => {
+                  handleOnCompleteTask();
+                }}
+                className={`${completed ? "bg-[#848484]" : "bg-[#6A3EA1]"} flex-row py-4 justify-center rounded-lg gap-2`}
+              >
+                <Feather
+                  name={completed ? "rotate-ccw" : "check-circle"}
+                  size={24}
+                  color="white"
+                />
+                <Text className="text-xl font-header font-bold text-white">
+                  {completed ? "Mark as Incomplete" : "Mark as Complete"}
+                </Text>
+              </TouchableOpacity>
+            </ScrollView>
+          </>
         )}
       </View>
     </FrameForScreens>
